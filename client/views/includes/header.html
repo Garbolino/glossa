@@ -1,28 +1,47 @@
 <template name="header">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+    <a href="{{pathFor 'homePage'}}" class="logo">
+        <!-- Add the class icon to your logo image or logo icon to add the margining -->
+        <b>Glossa</b>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{{pathFor 'homePage'}}">Meteor Boiler-Plate</a>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <!-- Tasks: style can be found in dropdown.less -->
+                <!-- User Account: style can be found in dropdown.less -->
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="/images/avatar04.png" class="user-image" alt="User Image"/>
+                        <!-- <span class="hidden-xs">{{userIdentity currentUser._id}}</span> -->
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header bg-light-blue">
+                            <img src="/images/avatar04.png" class="img-circle" alt="User Image" />
+                            <p>
+                                <!-- {{userIdentity currentUser._id}} -->
+                            </p>
+                        </li>
+                        <li class="user-body">
+                            <div class="col-xs-6 text-center">
+                                <a href="#">Profile</a>
+                            </div>
+                             <div class="col-xs-6 text-center">
+                                <a href="#">Orders</a>
+                            </div>
+                        </li>
+                        <li class="user-footer">
+                            <div class="pull-right">
+                                <a href="#" class="btn btn-default btn-flat" id="logout">Sign out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Tab</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-
-          <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Choose your account service</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
     </nav>
 </template>
-
-

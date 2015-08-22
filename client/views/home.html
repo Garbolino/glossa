@@ -1,3 +1,9 @@
 <template name="homePage">
-  <h1>This is the home page</h1>
+  {{# if mapReady}}
+    <div class="map-container" height="{{windowHeight}}">
+      {{> googleMap name="mediaMap" options=mapOptions}}
+    </div>
+  {{else}}
+    {{> loading}}
+  {{/if}}
 </template>

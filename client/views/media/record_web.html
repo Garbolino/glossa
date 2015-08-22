@@ -1,0 +1,56 @@
+<template name="recordWeb">
+    <h5>Record {{mediaType}}</h5>
+    {{#unless recorded}}
+      <div id="record" hidden=true>
+          {{#if supportsMedia}}
+              {{onLoad}}
+              {{#if $eq mediaType "video"}}
+                <div class="video-record">
+                  <video id="live_video" width="320" height="240" autoplay muted></video>
+                  <div class="video-controls">
+                    <button id="start-recording" data-media="video" class="btn btn-flat btn-primary" type="button"><i class="fa fa-circle"></i> Record</button>
+                    <button id="stop-recording" data-media="video" class="btn btn-flat btn-default" disabled="true" type="button"><i class="fa fa-stop"></i> Stop</button>
+                    <button id="cancel-recording" class="btn btn-flat btn-default" type="button"><i class="fa fa-remove"></i> Cancel</button>
+                  </div>
+                </div>
+              {{else}}
+                <div class="audio-record">
+                  <button id="start-recording" data-media="audio" class="btn btn-flat btn-primary" type="button">
+                    <div class="gps_ring"></div>
+                    <i class="fa fa-circle" id="audioCirle"></i> Record Audio
+                  </button>
+                  <button id="stop-recording" data-media="audio" class="btn btn-flat btn-default" disabled="true" type="button">
+                    <i class="fa fa-stop"></i> Stop
+                  </button>
+                </div>
+              {{/if}}
+              <div id="uploading" hidden="true">The video is converting and uploading</div>
+          {{else}}
+              Sorry - your browser does not support user media (camera & microphone)
+          {{/if}}
+      </div>
+    {{/unless}}
+    {{# if videoFile}}
+      <div class="video-record">
+        <video id="review_video" width="320" height="240" src="{{videoFile}}"></video>
+        <audio hidden="true" id="review_audio" src="{{audioFile}}"></audio>
+        <div class="video-controls">
+          <button type="button" id="play-recording" class="btn btn-flat btn-primary"><i class="fa fa-play"></i> Play</button>
+          <button type="button" id="stop-playing" class="btn btn-flat btn-default"><i class="fa fa-stop"></i> Stop</button>
+          <button type="button" class="btn btn-flat btn-danger delete-record"><i class="fa fa-remove"></i> Delete</button>
+        </div>
+      </div>
+    {{else}}
+      {{#if audioFile}}
+        <div class="audioRecorded">
+          <audio id="review_audio" src="{{audioFile}}" controls></audio>
+          <button type="button" class="btn btn-sm btn-flat btn-default delete-record">
+            <i class="fa fa-remove"></i> Delete Audio
+          </button>
+        </div>
+      {{/if}}
+    {{/if}}
+    <div id="media-error">
+      <h4>Please enable the camera and microphone to record</h4>
+    </div>
+</template>

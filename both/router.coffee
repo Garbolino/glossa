@@ -8,3 +8,8 @@ Router.map ->
   # Home
   @route "/",
     name: 'homePage'
+    waitOn: ->
+      Meteor.subscribe "locations"
+
+  @route "/upload",
+    name: 'uploadMedia'

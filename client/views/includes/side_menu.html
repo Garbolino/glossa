@@ -1,22 +1,58 @@
-<template name="side_menu">
+<template name="sideMenu">
   <section class="sidebar">
       <!-- Sidebar user panel -->
       <div class="user-panel">
           <div class="pull-left image">
-              <img src="/images/avatar3.png" class="img-circle" alt="User Image" />
+              <img src="/images/avatar04.png" class="img-circle" alt="User Image" />
           </div>
           <div class="pull-left info">
-              <p>{{userIdentity currentUser._id}}</p>
+              <!-- <p>{{userIdentity currentUser._id}}</p> -->
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
       </div>
+      <form action="#" method="get" class="sidebar-form">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search...">
+            <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+            </span>
+          </div>
+      </form>
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
-          <!-- <li class="{{isRouteActive 'blogAdmin'}}">
-              <a href="{{pathFor 'blogAdmin'}}">
-                  <i class="fa fa-pencil-square-o"></i> <span>Blog</span>
+          <li class="header">MAIN MENU</li>
+          <li class="{{isRouteActive 'homePage'}}">
+              <a href="{{pathFor 'homePage'}}">
+                  <i class="fa fa-home"></i> <span>Home</span>
               </a>
-          </li> -->
+          </li>
+          <li class="{{isRouteActive 'uploadMedia'}}">
+              <a href="{{pathFor 'uploadMedia'}}">
+                  <i class="fa fa-plus"></i> <span>Add Media</span>
+              </a>
+          </li>
+           <li class="{{isRouteActive 'homePage'}}">
+              <a href="{{pathFor 'homePage'}}">
+                  <i class="fa fa-mobile"></i> <span>Apps</span>
+              </a>
+          </li>
+          {{#if isInRole 'admin, staff' }}
+          <li class="header">ADMIN</li>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-edit"></i> <span>Admin</span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </a>
+<!--             <ul class="treeview-menu" style="display:none;">
+              <li><a href="{{pathFor 'adminUsers'}}"><i class="fa fa-user"></i> Users</a></li>
+              <li><a href="{{pathFor 'adminCrons'}}"><i class="fa fa-cog"></i> Crons</a></li>
+              <li><a href="{{pathFor 'adminJobs'}}"><i class="fa fa-cogs"></i> Jobs</a></li>
+              <li><a href="{{pathFor 'adminProxys'}}"><i class="fa fa-sitemap"></i> Proxys</a></li>
+              <li><a href="{{pathFor 'adminInvitations'}}"><i class="fa fa-users"></i> Invitations</a></li>
+            </ul> -->
+          </li>
+          {{/if}}
       </ul>
   </section>
+
 </template>

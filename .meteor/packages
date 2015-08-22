@@ -16,9 +16,14 @@ sacha:spin
 
 
 npm-container
-meteorhacks:async
-nblazer:casperjs
 aldeed:collection2
-vsivsi:job-collection
-aldeed:tabular
 fortawesome:fontawesome
+twbs:bootstrap
+mfactory:admin-lte
+juliancwirko:s-alert
+alanning:roles
+jeremy:geocomplete
+insecure
+raix:handlebar-helpers
+edgee:slingshot
+ongoworks:speakingurl

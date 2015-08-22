@@ -1,0 +1,64 @@
+<template name="uploadMedia">
+  <section class="content-header">
+      <h1>Upload Media</h1>
+      <ol class="breadcrumb">
+        <li><a href="{{pathFor 'homePage'}}"><i class="fa fa-home"></i> Home</a></li>
+        <li class="active">Upload Media</li>
+      </ol>
+  </section>
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+           <div class="box-header with-border">
+              <h3 class="box-title">Add Media</h3>
+           </div>
+           <form role="form" id="uploadMediaForm">
+            <div class="box-body">
+              <div class="form-group {{errorClass 'location'}}">
+                <label for="inputLocation">Location <small>{{errorMessage 'location'}}</small></label>
+                <input type="text" class="form-control" id="geocomplete" placeholder="Tap to search your location" name="location">
+                <div class="details">
+                  <input type="hidden" name="lat" data-geo="lat">
+                  <input type="hidden" name="lng" data-geo="lng">
+                  <input type="hidden" name="formatted_address" data-geo="formatted_address">
+                  <input type="hidden" name="country_short" data-geo="country_short">
+                  <input type="hidden" name="locality" data-geo="locality">
+                  <input type="hidden" name="country" data-geo="country">
+                </div>
+              </div>
+              <div class="form-group {{errorClass 'title'}}">
+                <label for="title">Title <small>{{errorMessage 'title'}}</small></label>
+                <input type="text" class="form-control" id="titleInput" placeholder="Write down a title for your media" name="title">
+              </div>
+              {{# if isCordova}}
+                Is Cordova
+              {{else}}
+              <div class="form-group {{errorClass 'mediaFile'}}">
+                <label for="media">Media <small>{{errorMessage 'title'}}</small></label> <small>Attach a file from your computer or record a new one</small>
+                {{> mediaFormWeb}}
+              </div>
+              {{/if}}
+            </div><!-- /.box-body -->
+
+            <div class="box-footer">
+              <button type="submit" class="btn btn-primary" id="submitMedia">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<template name="mediaFormWeb">
+    <input type="file" class="form-control" id="inputFile" name="mediaFile">
+    <div class="form-group record-group">
+      <button class="btn btn-sm btn-flat btn-default record" data-media="audio"><i class="fa fa-microphone"></i> Record Audio</button>
+      <button class="btn btn-sm btn-flat btn-default record" data-media="video"><i class="fa fa-video-camera"></i> Record Video</button>
+    </div>
+    <div class="recordWeb">
+      {{> recordWeb}}
+    </div>
+</template>
+

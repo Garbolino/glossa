@@ -1,11 +1,55 @@
-@import "/client/stylesheets/bootstrap-3.2.0/less/bootstrap.import.less";
-@import "/client/stylesheets/adminLTE/AdminLTE.import.less";
-@import "/client/stylesheets/adminLTE/skins/skin-blue.import.less";
 
-#content-wrapper{
-  padding-top: 50px;
+body, html, .wrapper, .skin-blue, .content-wrapper{
+  height: 100%;
+}
+.map-container {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+}
+.record-group{
+  margin-top:20px;
 }
 
-#content{
-
+.audio-record{
+  position: relative;
+}
+.gps_ring {
+    border: 2px solid #fff;
+    -webkit-border-radius: 30px;
+    height: 15px;
+    width: 15px;
+    -webkit-animation: pulsate 1s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    opacity: 0.0;
+    display: none;
+}
+.gps_ring.pulse{
+  display:inline-block;
+}
+@-webkit-keyframes pulsate {
+    0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
+    50% {opacity: 1.0;}
+    100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
+}
+.audioRecorded{
+  .btn-sm{
+    margin-top:-24px;
+  }
+}
+.video-record{
+  position: relative;
+  video{
+    position: relative;
+    z-index: 100;
+  }
+  .video-controls{
+    position: absolute;
+    z-index: 1000;
+    bottom: 5px;
+    left:0;
+    .btn-danger{
+      right:0;
+    }
+  }
 }

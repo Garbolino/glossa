@@ -2,25 +2,22 @@
     <link rel="icon" sizes="16x16" href="/favicon.ico">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Quorator</title>
+    <title>Glossa</title>
     <meta name="description" content="" />
   <meta name="google-site-verification" content="" />
 </head>
 
 <template name="layout">
-    <header class="main-header">
-        {{> yield "header"}}
-    </header>
-    <aside class="main-sidebar">
-        <section class="sidebar">
-            {{> yield "side_menu"}}
-        </section>
-    </aside>
-    <div class="content-wrapper row-offcanvas row-offcanvas-left">
-        <section class="content">
-            <div class="container-fluid">
-                {{> yield}}
-            </div>
-        </section>
-    </div>
+    {{#AdminLTE skin="blue" fixed=true sidebarMini=true}}
+        {{> sAlert}}
+        <header class="main-header">
+            {{> header}}
+        </header>
+        <aside class="main-sidebar">
+            {{> sideMenu}}
+        </aside>
+        <div class="content-wrapper row-offcanvas row-offcanvas-left">
+            {{> yield}}
+        </div><!-- ./wrapper -->
+    {{/AdminLTE}}
 </template>
