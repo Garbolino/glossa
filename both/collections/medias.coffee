@@ -10,7 +10,7 @@ Medias.allow
   remove: (userId, doc) ->
     true
 
-@MediaSchema = new SimpleSchema
+MediaSchema = new SimpleSchema
   userId:
     label: 'userId'
     type: String
@@ -29,9 +29,18 @@ Medias.allow
     label: 'mediaType'
     type: String
     allowedValues: ['audio', 'video']
+  recorderBy:
+    label: 'recorderBy'
+    type: String
+    allowedValues: ['browser', 'file', 'cordova']
   locationId:
     label: 'locationId'
     type: String
+    optional: true
+  locationSlug:
+    label: 'locationSlug'
+    type: String
+    optional: true
   createdAt:
     label: 'updatedAt'
     type: Date
@@ -46,17 +55,32 @@ Medias.attachSchema(MediaSchema)
 
 Meteor.methods
   'createMedia': (params) ->
-    check(params, {title:String, mediaType:String, locationId: String})
-
     userId = Meteor.userId()
     if !userId
       throw new Meteor.Error(401, "You need to login to post new audios")
 
-    params.userId = userId
-    params.createdAt = new Date()
-    params.active = true
+    media = params.media
+    if !media.audioUrl and !media.videoUrl
+      throw new Meteor.Error(403, "There is not uploaded media")
 
-    mediaId = Medias.insert params
-    mediaId
+    if !params.location.name
+      throw new Meteor.Error(403, "There is not location for this media")
+
+    media.userId = userId
+    media.createdAt = new Date()
+    media.active = true
+
+    mediaId = Medias.insert media
+    Meteor.call 'getOrCreateLocation', params.location, (error, locationId) ->
+      if error
+        console.log(error)
+      else
+        updateMedia =
+          $set:
+            'locationId': locationId
+            'locationSlug': params.location.slug
+        Medias.update({_id: mediaId}, updateMedia)
+
+    params.location.slug
 
 

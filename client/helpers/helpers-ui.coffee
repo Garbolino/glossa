@@ -53,3 +53,8 @@ UI.registerHelper "truncateString", (string, length) ->
 		truncate += '...'
 	truncate
 
+UI.registerHelper "mediaTypeIcon", (mediaType) ->
+  if mediaType is 'audio'
+    return 'volume-up'
+  if mediaType is 'video'
+    return 'video-camera'

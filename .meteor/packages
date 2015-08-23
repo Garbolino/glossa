@@ -27,3 +27,8 @@ insecure
 raix:handlebar-helpers
 edgee:slingshot
 ongoworks:speakingurl
+useraccounts:bootstrap
+useraccounts:iron-routing
+accounts-password
+accounts-facebook
+service-configuration

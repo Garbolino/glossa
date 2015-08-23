@@ -1,7 +1,7 @@
 markers = {}
 
 getInfoWindow = (slug,name) ->
-  contentString = "<a href='/accents/#{slug}' id='content'>#{name}</a>"
+  contentString = "<a href='/#{slug}' id='content'>#{name}</a>"
   contentString
 
 
@@ -59,7 +59,7 @@ Template.homePage.onCreated ->
   return
 
 Template.homePage.onRendered ->
-
+  $('.wrapper').addClass('home')
   # @autorun ->
   #   userLoc = Geolocation.latLng()
   #   if userLoc

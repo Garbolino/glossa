@@ -1,0 +1,49 @@
+<template name="locationPage">
+  <section class="content-header">
+      <h1>{{location.name}}</h1>
+      <ol class="breadcrumb">
+        <li><a href="{{pathFor 'homePage'}}"><i class="fa fa-home"></i> Home</a></li>
+        <li class="active">{{location.name}}</li>
+      </ol>
+  </section>
+  <section class="content">
+  <div class="row">
+      <div class="col-md-12">
+        {{#each medias}}
+          <div class="row">
+            <div class="col-md-12">
+              <div class="box box-solid">
+                <div class="box-header with-border">
+                  <i class="fa fa-{{mediaTypeIcon mediaType}}"></i>
+                  <h3 class="box-title">{{title}}</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  {{> mediaItem}}
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- ./col -->
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </section>
+</template>
+<template name="mediaItem">
+  {{# if $eq mediaType 'audio'}}
+      <audio id="review_audio" src="{{audioUrl}}" controls></audio>
+  {{else}}
+    {{# if $eq recorderBy 'browser'}}
+      <div class="video-record">
+        <video id="video_{{_id}}" width="320" height="240" src="{{videoUrl}}" name="video"></video>
+        <audio hidden="true" id="audio_{{_id}}" src="{{audioUrl}}" name="audio"></audio>
+        <div class="video-controls">
+          <button type="button" class="btn btn-flat btn-primary play-recording"><i class="fa fa-play"></i> Play</button>
+          <button type="button" class="btn btn-flat btn-default stop-playing"><i class="fa fa-stop"></i> Stop</button>
+          {{# if isEditable}}
+            <button type="button" class="btn btn-flat btn-danger delete-record"><i class="fa fa-remove"></i> Delete</button>
+          {{/if}}
+        </div>
+      </div>
+    {{/if}}
+  {{/if}}
+</template>

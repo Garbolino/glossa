@@ -1,7 +1,8 @@
 <template name="header">
     <a href="{{pathFor 'homePage'}}" class="logo">
         <!-- Add the class icon to your logo image or logo icon to add the margining -->
-        <b>Glossa</b>
+        <span class="logo-mini"><b>G</b></span>
+        <span class="logo-lg"><b>Glossa</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
@@ -14,32 +15,36 @@
                 <!-- Tasks: style can be found in dropdown.less -->
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="/images/avatar04.png" class="user-image" alt="User Image"/>
-                        <!-- <span class="hidden-xs">{{userIdentity currentUser._id}}</span> -->
-                    </a>
-                    <ul class="dropdown-menu">
-                        <!-- User image -->
-                        <li class="user-header bg-light-blue">
-                            <img src="/images/avatar04.png" class="img-circle" alt="User Image" />
-                            <p>
-                                <!-- {{userIdentity currentUser._id}} -->
-                            </p>
-                        </li>
-                        <li class="user-body">
-                            <div class="col-xs-6 text-center">
-                                <a href="#">Profile</a>
-                            </div>
-                             <div class="col-xs-6 text-center">
-                                <a href="#">Orders</a>
-                            </div>
-                        </li>
-                        <li class="user-footer">
-                            <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat" id="logout">Sign out</a>
-                            </div>
-                        </li>
-                    </ul>
+                    {{#if currentUser}}
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="/images/avatar04.png" class="user-image" alt="User Image"/>
+                            <span class="hidden-xs">{{currentUser.username}}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header bg-light-blue">
+                                <img src="/images/avatar04.png" class="img-circle" alt="User Image" />
+                                <p>
+                                    <!-- {{userIdentity currentUser._id}} -->
+                                </p>
+                            </li>
+                            <li class="user-body">
+                                <div class="col-xs-6 text-center">
+                                    <a href="#">Profile</a>
+                                </div>
+                                 <div class="col-xs-6 text-center">
+                                    <a href="#">Uploads</a>
+                                </div>
+                            </li>
+                            <li class="user-footer">
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-default btn-flat" id="logout">Sign out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    {{else}}
+                        <a href="{{pathFor 'signIn'}}">Sign In</a>
+                    {{/if}}
                 </li>
             </ul>
         </div>
